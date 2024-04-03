@@ -1,7 +1,10 @@
+import tkinter as tk
+
 class ExamController:
     def send_user_data(name, email, pass_training, num_of_questions_passed):
         #Send user data to database here
         print(name, email, pass_training, num_of_questions_passed)
+        #{name: [email, pass_training, num_of_questions_passed]}
 
     def calculate_pass(num_of_questions_passed):
         #Change this number based on the number questions that need to be passed
@@ -49,7 +52,24 @@ class User:
     def num_of_questions_passed(self, value):
         self._num_of_questions_passed = value
 
+class questions:
+    def __init__(self, num_of_questions: int, all_questions: str):
+        self._num_of_questions = num_of_questions
+        self._all_questions = all_questions
+    
+    @property
+    def num_of_questions(self):
+        return self._num_of_questions
+    
+    @property
+    def all_questions(self):
+        self._all_questions
+
 def main():
+    root = tk.Tk()
+    message = tk.Label(root, text="Y'all should really be working on this by now")
+
+    root.mainloop()
     print("test")
 
 if __name__ == "__main__":
