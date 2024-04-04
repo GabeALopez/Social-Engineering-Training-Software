@@ -88,7 +88,7 @@ class App:
         nameLabel = tk.Label(master=self.window, text="Name: ", font="Arial 12")
         nameLabel.grid(row=1, column=0, padx=5, pady=5)
         self.nameEntry = tk.StringVar()
-        nameEntry = tk.Entry(master=self.window)
+        nameEntry = tk.Entry(master=self.window, textvariable=self.nameEntry)
         nameEntry.grid(row=1, column=1, padx=5, pady=5)
 
         # email input
