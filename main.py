@@ -65,17 +65,8 @@ class questions:
     def all_questions(self):
         self._all_questions
 
-#I made the App its own class, idk if we should keep it this way?
-
 class App:
-
-    def next_page_question(self):
-        # Destroy current frame
-        self.main_frame.destroy()
-
-        # Create new frame for the next page
-        self.question_1_page()
-    
+ 
     def question_1_page(self):
         self.main_frame = tk.Frame(self.window)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
@@ -83,6 +74,22 @@ class App:
         question_1_label = tk.Label(master=self.main_frame, text="Question 1 goes here", font="Arial 24")
         question_1_label.pack(padx=10, pady=10)
 
+        self.question_entry = tk.StringVar()
+        
+        question_input_frame = tk.Frame(self.main_frame)
+        question_input_frame.pack(padx=10, pady=10)
+        question_text_entry = tk.Entry(master=question_input_frame, textvariable=self.question_entry)
+        question_text_entry.pack(padx=10, pady=10)
+
+        question_button = tk.Button(master=self.main_frame, text="Enter")
+        question_button.pack(padx=5, pady=5)
+
+    def next_page_question(self):
+        # Destroy current frame
+        self.main_frame.destroy()
+
+        # Create new frame for the next page
+        self.question_1_page()
     
     def info_page(self):
         # Create new frame for the next page
