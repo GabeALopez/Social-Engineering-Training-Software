@@ -66,6 +66,7 @@ class questions:
         self._all_questions
 
 class App:
+    question_num = 1
  
     def question_1_page(self):
         self.main_frame = tk.Frame(self.window)
@@ -81,7 +82,41 @@ class App:
         question_text_entry = tk.Entry(master=question_input_frame, textvariable=self.question_entry)
         question_text_entry.pack(padx=10, pady=10)
 
-        question_button = tk.Button(master=self.main_frame, text="Enter")
+        question_button = tk.Button(master=self.main_frame, text="Enter", command=self.next_page_question)
+        question_button.pack(padx=5, pady=5)
+
+    def question_2_page(self):
+        self.main_frame = tk.Frame(self.window)
+        self.main_frame.pack(fill=tk.BOTH, expand=True)
+
+        question_2_label = tk.Label(master=self.main_frame, text="Question 2 goes here", font="Arial 24")
+        question_2_label.pack(padx=10, pady=10)
+
+        self.question_entry = tk.StringVar()
+        
+        question_input_frame = tk.Frame(self.main_frame)
+        question_input_frame.pack(padx=10, pady=10)
+        question_text_entry = tk.Entry(master=question_input_frame, textvariable=self.question_entry)
+        question_text_entry.pack(padx=10, pady=10)
+
+        question_button = tk.Button(master=self.main_frame, text="Enter", command=self.next_page_question)
+        question_button.pack(padx=5, pady=5)
+
+    def question_3_page(self):
+        self.main_frame = tk.Frame(self.window)
+        self.main_frame.pack(fill=tk.BOTH, expand=True)
+
+        question_3_label = tk.Label(master=self.main_frame, text="Question 3 goes here", font="Arial 24")
+        question_3_label.pack(padx=10, pady=10)
+
+        self.question_entry = tk.StringVar()
+        
+        question_input_frame = tk.Frame(self.main_frame)
+        question_input_frame.pack(padx=10, pady=10)
+        question_text_entry = tk.Entry(master=question_input_frame, textvariable=self.question_entry)
+        question_text_entry.pack(padx=10, pady=10)
+
+        question_button = tk.Button(master=self.main_frame, text="Enter", command=self.next_page_question)
         question_button.pack(padx=5, pady=5)
 
     def next_page_question(self):
@@ -89,7 +124,15 @@ class App:
         self.main_frame.destroy()
 
         # Create new frame for the next page
-        self.question_1_page()
+        if self.question_num == 1:
+            self.question_1_page()
+            self.question_num += 1
+        elif self.question_num == 2:
+            self.question_2_page()
+            self.question_num += 1
+        elif self.question_num == 3:
+            self.question_3_page()
+            self.question_num += 1
     
     def info_page(self):
         # Create new frame for the next page
