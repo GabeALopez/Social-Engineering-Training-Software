@@ -72,7 +72,7 @@ class App:
         self.main_frame = tk.Frame(self.window)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
         
-        question_1_label = tk.Label(master=self.main_frame, text="Question 1 goes here", font="Arial 24")
+        question_1_label = tk.Label(master=self.main_frame, text="Question 1", font="Arial 24")
         question_1_label.pack(padx=10, pady=10)
 
         self.question_entry = tk.StringVar()
@@ -84,6 +84,10 @@ class App:
 
         question_button = tk.Button(master=self.main_frame, text="Enter", command=self.next_page_question)
         question_button.pack(padx=5, pady=5)
+
+        self.checkbox_var = tk.BooleanVar()
+        checkbox = tk.Checkbutton(master=self.main_frame, text="test", variable=self.checkbox_var)
+        checkbox.pack(padx=10, pady=10)
 
     def question_2_page(self):
         self.main_frame = tk.Frame(self.window)
