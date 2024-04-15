@@ -71,7 +71,7 @@ class App:
     def question_1_page(self):
         self.main_frame = tk.Frame(self.window)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
-
+        
         question_1_label = tk.Label(master=self.main_frame, text="Question 1 goes here", font="Arial 24")
         question_1_label.pack(padx=10, pady=10)
 
