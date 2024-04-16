@@ -1,17 +1,6 @@
 import tkinter as tk
 
-class ExamController:
-    def send_user_data(name, email, pass_training, num_of_questions_passed):
-        #Send user data to database here
-        print(name, email, pass_training, num_of_questions_passed)
-        #{name: [email, pass_training, num_of_questions_passed]}
-
-    def calculate_pass(num_of_questions_passed):
-        #Change this number based on the number questions that need to be passed
-        all_questions = 3
-
-        if all_questions == num_of_questions_passed:
-            return True
+database = {}
 
 class User:
     def __init__(self, name, email):
@@ -20,6 +9,17 @@ class User:
         self._pass_training = False
         self._num_of_questions_passed = 0
     
+    def save_to_database(self):
+        global database
+        database[self._name] = self
+
+    def check_if_in_database(self, name, email):
+        global database
+        for user in database.values():
+            if user._name == name and user._email == email:
+                return True
+        return False
+
     @property
     def name(self):
         return self._name
@@ -52,6 +52,19 @@ class User:
     def num_of_questions_passed(self, value):
         self._num_of_questions_passed = value
 
+class ExamController(User):
+    def send_user_data(name, email, pass_training, num_of_questions_passed):
+        #Send user data to database here
+        print(name, email, pass_training, num_of_questions_passed)
+        #{name: [email, pass_training, num_of_questions_passed]}
+
+    def calculate_pass(num_of_questions_passed):
+        #Change this number based on the number questions that need to be passed
+        all_questions = 3
+
+        if all_questions == num_of_questions_passed:
+            return True
+
 class questions:
     def __init__(self, num_of_questions: int, all_questions: str):
         self._num_of_questions = num_of_questions
@@ -65,7 +78,7 @@ class questions:
     def all_questions(self):
         self._all_questions
 
-class App:
+class App(ExamController):
     question_num = 1
  
     def check_question_answers(self):
@@ -79,26 +92,25 @@ class App:
         question_1_label = tk.Label(master=self.main_frame, text="Question 1", font="Arial 24")
         question_1_label.pack(padx=10, pady=10)
 
-        info_text = """የእርስዎ አስማቶች ሳይስተዋል አይሄዱም ፣ የአጋጣሚ ነገር ተግባራትዎ መከራዎ ወደሚመጣበት ወደ ትልቅ ባዶነት ይመራዎታል ፡፡ 
-        መቼም ያደረጉት ነገር ሁሉ በከንቱ ነበር ፣ እና የእርስዎ ምንምነት ከበፊቱ ያነሰ ይሆናል።"""
+        info_text = """What is Social Engineering?"""
 
         instructions_label = tk.Label(master=self.main_frame, text=info_text, font="Arial 12")
         instructions_label.pack(padx=10, pady=10)
 
         self.checkbox_varA = tk.BooleanVar(0)
-        checkbox1 = tk.Checkbutton(master=self.main_frame, text="A", variable=self.checkbox_varA)
+        checkbox1 = tk.Checkbutton(master=self.main_frame, text="A. The process of building software to connect people and communities.", variable=self.checkbox_varA)
         checkbox1.pack(padx=10, pady=10)
 
         self.checkbox_varB = tk.BooleanVar(0)    
-        checkbox2 = tk.Checkbutton(master=self.main_frame, text="B", variable=self.checkbox_varB)
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="B. A psychological evaluation of human behavior and interactions.", variable=self.checkbox_varB)
         checkbox2.pack(padx=10, pady=10)
 
         self.checkbox_varC = tk.BooleanVar(0)    
-        checkbox2 = tk.Checkbutton(master=self.main_frame, text="C", variable=self.checkbox_varC)
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="C. Using human interaction to trick or coerce a person into handing over sensitive data.", variable=self.checkbox_varC)
         checkbox2.pack(padx=10, pady=10)
 
         self.checkbox_varD= tk.BooleanVar(0)    
-        checkbox2 = tk.Checkbutton(master=self.main_frame, text="D", variable=self.checkbox_varD)
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="D. Using human interaction to trick or coerce a person into handing over sensitive data.", variable=self.checkbox_varD)
         checkbox2.pack(padx=10, pady=10)
 
         question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=self.check_question_answers)
@@ -179,12 +191,14 @@ class App:
         # Get user input
         name = self.nameEntry.get()
         email = self.emailEntry.get()
+        if (self.check_if_in_database(name, email) == True):
+            # Destroy current frame
+            self.main_frame.destroy()
 
-        # Destroy current frame
-        self.main_frame.destroy()
-
-        # Create new frame for the next page
-        self.info_page()
+            # Create new frame for the next page
+            self.info_page()
+        else:
+            self.enter_user_info()
 
     def __init__(self):
         self.window = tk.Tk()
@@ -219,6 +233,10 @@ class App:
         print("App Closed")
 
 def main():
+    user1 = User('Gavin', 'gavin@example.com')
+    user2 = User('Thomas', 'thomas@example.com')
+    user1.save_to_database()
+    user2.save_to_database()
     app = App()
 
 if __name__ == "__main__":
