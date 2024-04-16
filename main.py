@@ -68,6 +68,10 @@ class questions:
 class App:
     question_num = 1
  
+    def check_question_answers(self):
+        if self.checkbox_varD.get() == 1:
+            self.next_page_question()
+
     def question_1_page(self):
         self.main_frame = tk.Frame(self.window)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
@@ -75,19 +79,30 @@ class App:
         question_1_label = tk.Label(master=self.main_frame, text="Question 1", font="Arial 24")
         question_1_label.pack(padx=10, pady=10)
 
-        self.question_entry = tk.StringVar()
-        
-        question_input_frame = tk.Frame(self.main_frame)
-        question_input_frame.pack(padx=10, pady=10)
-        question_text_entry = tk.Entry(master=question_input_frame, textvariable=self.question_entry)
-        question_text_entry.pack(padx=10, pady=10)
+        info_text = """የእርስዎ አስማቶች ሳይስተዋል አይሄዱም ፣ የአጋጣሚ ነገር ተግባራትዎ መከራዎ ወደሚመጣበት ወደ ትልቅ ባዶነት ይመራዎታል ፡፡ 
+        መቼም ያደረጉት ነገር ሁሉ በከንቱ ነበር ፣ እና የእርስዎ ምንምነት ከበፊቱ ያነሰ ይሆናል።"""
 
-        question_button = tk.Button(master=self.main_frame, text="Enter", command=self.next_page_question)
-        question_button.pack(padx=5, pady=5)
+        instructions_label = tk.Label(master=self.main_frame, text=info_text, font="Arial 12")
+        instructions_label.pack(padx=10, pady=10)
 
-        self.checkbox_var = tk.BooleanVar()
-        checkbox = tk.Checkbutton(master=self.main_frame, text="test", variable=self.checkbox_var)
-        checkbox.pack(padx=10, pady=10)
+        self.checkbox_varA = tk.BooleanVar(0)
+        checkbox1 = tk.Checkbutton(master=self.main_frame, text="A", variable=self.checkbox_varA)
+        checkbox1.pack(padx=10, pady=10)
+
+        self.checkbox_varB = tk.BooleanVar(0)    
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="B", variable=self.checkbox_varB)
+        checkbox2.pack(padx=10, pady=10)
+
+        self.checkbox_varC = tk.BooleanVar(0)    
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="C", variable=self.checkbox_varC)
+        checkbox2.pack(padx=10, pady=10)
+
+        self.checkbox_varD= tk.BooleanVar(0)    
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="D", variable=self.checkbox_varD)
+        checkbox2.pack(padx=10, pady=10)
+
+        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=self.check_question_answers)
+        question_button_blah.pack(padx=5, pady=5)
 
     def question_2_page(self):
         self.main_frame = tk.Frame(self.window)
