@@ -97,19 +97,19 @@ class App(ExamController):
         instructions_label = tk.Label(master=self.main_frame, text=info_text, font="Arial 12")
         instructions_label.pack(padx=10, pady=10)
 
-        self.checkbox_varA = tk.BooleanVar(0)
+        self.checkbox_varA = tk.BooleanVar(value=False)
         checkbox1 = tk.Checkbutton(master=self.main_frame, text="A. The process of building software to connect people and communities.", variable=self.checkbox_varA)
         checkbox1.pack(padx=10, pady=10)
 
-        self.checkbox_varB = tk.BooleanVar(0)    
+        self.checkbox_varB = tk.BooleanVar(value=False)    
         checkbox2 = tk.Checkbutton(master=self.main_frame, text="B. A psychological evaluation of human behavior and interactions.", variable=self.checkbox_varB)
         checkbox2.pack(padx=10, pady=10)
 
-        self.checkbox_varC = tk.BooleanVar(0)    
+        self.checkbox_varC = tk.BooleanVar(value=False)    
         checkbox2 = tk.Checkbutton(master=self.main_frame, text="C. Using human interaction to trick or coerce a person into handing over sensitive data.", variable=self.checkbox_varC)
         checkbox2.pack(padx=10, pady=10)
 
-        self.checkbox_varD= tk.BooleanVar(0)    
+        self.checkbox_varD= tk.BooleanVar(value=False)    
         checkbox2 = tk.Checkbutton(master=self.main_frame, text="D. Using human interaction to trick or coerce a person into handing over sensitive data.", variable=self.checkbox_varD)
         checkbox2.pack(padx=10, pady=10)
 
