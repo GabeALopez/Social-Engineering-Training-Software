@@ -102,36 +102,100 @@ class App(ExamController):
         checkbox1.pack(padx=10, pady=10)
 
         self.checkbox_varB = tk.BooleanVar(value=False)    
-        checkbox2 = tk.Checkbutton(master=self.main_frame, text="B. A psychological evaluation of human behavior and interactions.", variable=self.checkbox_varB)
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="B. The study of social hierarchies and relationships within communities.", variable=self.checkbox_varB)
         checkbox2.pack(padx=10, pady=10)
 
         self.checkbox_varC = tk.BooleanVar(value=False)    
-        checkbox2 = tk.Checkbutton(master=self.main_frame, text="C. Using human interaction to trick or coerce a person into handing over sensitive data.", variable=self.checkbox_varC)
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="C. A form of digital marketing aimed at promoting social interactions online.", variable=self.checkbox_varC)
         checkbox2.pack(padx=10, pady=10)
 
         self.checkbox_varD= tk.BooleanVar(value=False)    
         checkbox2 = tk.Checkbutton(master=self.main_frame, text="D. Using human interaction to trick or coerce a person into handing over sensitive data.", variable=self.checkbox_varD)
         checkbox2.pack(padx=10, pady=10)
 
-        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=self.check_question_answers)
+        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=lambda : self.next_page_question() if (
+            not self.checkbox_varA.get() and 
+            not self.checkbox_varB.get() and
+            not self.checkbox_varC.get() and
+            self.checkbox_varD.get()
+            ) 
+            else print("incorrect"))
+        
         question_button_blah.pack(padx=5, pady=5)
 
     def question_2_page(self):
         self.main_frame = tk.Frame(self.window)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
 
-        question_2_label = tk.Label(master=self.main_frame, text="Question 2 goes here", font="Arial 24")
+        name = self.currName
+        email = self.currEmail
+
+        email_t = tk.Text(master=self.main_frame, height = 15, width = 75)
+        email_text = f"""
+To: {email}
+Subject: Urgent: Action Required - Security Alert for Your Account
+
+Dear {name},
+
+We regret to inform you that there has been suspicious activity detected on your account. Our security system has flagged several unauthorized login attempts from unrecognized devices, which may indicate a potential security breach.
+
+To ensure the safety and integrity of your account, we urge you to take immediate action. Please follow the steps below to verify your account and secure it from any further unauthorized access:
+
+Step 1: Click on the link provided below to access the account verification page.
+veryifymyaccount.com
+
+Step 2: Once you are on the verification page, please enter your login credentials (username and password) to confirm your identity.
+
+Step 3: After verifying your account, you will be prompted to update your security information, including setting up additional security questions and enabling two-factor authentication (2FA).
+
+Failure to verify your account within the next 24 hours may result in temporary suspension or permanent termination of your account to prevent any potential data breach.
+
+We take the security of your account seriously and appreciate your prompt attention to this matter. If you have any questions or concerns, please do not hesitate to contact our support team immediately.
+
+Thank you for your cooperation.
+
+Sincerely,
+SSELLCO
+Security Team
+                """
+        question_2_label = tk.Label(master=self.main_frame, text="Analize the Following Email", font="Arial 24")
         question_2_label.pack(padx=10, pady=10)
 
         self.question_entry = tk.StringVar()
         
-        question_input_frame = tk.Frame(self.main_frame)
-        question_input_frame.pack(padx=10, pady=10)
-        question_text_entry = tk.Entry(master=question_input_frame, textvariable=self.question_entry)
-        question_text_entry.pack(padx=10, pady=10)
+        email_t.pack()
+        email_t.insert(tk.END, email_text)
 
-        question_button = tk.Button(master=self.main_frame, text="Enter", command=self.next_page_question)
-        question_button.pack(padx=5, pady=5)
+        self.checkbox_varA = tk.BooleanVar(value=False)
+        checkbox1 = tk.Checkbutton(master=self.main_frame, text="A. Click on the link and follow the instructions", variable=self.checkbox_varA)
+        checkbox1.pack(padx=(100, 5), pady=5, anchor="w")
+
+        self.checkbox_varB = tk.BooleanVar(value=False)    
+        checkbox2 = tk.Checkbutton(master=self.main_frame, text="B. Verify the sender's email address", variable=self.checkbox_varB)
+        checkbox2.pack(padx=(100, 5), pady=5, anchor="w")
+
+        self.checkbox_varC = tk.BooleanVar(value=False)    
+        checkbox3 = tk.Checkbutton(master=self.main_frame, text="C. Forward the email to all your contacts", variable=self.checkbox_varC)
+        checkbox3.pack(padx=(100, 5), pady=5, anchor="w")
+
+        self.checkbox_varD = tk.BooleanVar(value=False)    
+        checkbox4 = tk.Checkbutton(master=self.main_frame, text="D. Report the email as phishing", variable=self.checkbox_varD)
+        checkbox4.pack(padx=(100, 5), pady=5, anchor="w")
+
+        self.checkbox_varE = tk.BooleanVar(value=False)    
+        checkbox5 = tk.Checkbutton(master=self.main_frame, text="E. Check for grammar and spelling mistakes", variable=self.checkbox_varE)
+        checkbox5.pack(padx=(100, 5), pady=5, anchor="w")
+
+        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=lambda : self.next_page_question() if (
+            not self.checkbox_varA.get() and 
+            self.checkbox_varB.get() and
+            not self.checkbox_varC.get() and
+            self.checkbox_varD.get() and
+            self.checkbox_varE.get()
+            ) 
+            else print("incorrect"))
+        
+        question_button_blah.pack(padx=5, pady=5)
 
     def question_3_page(self):
         self.main_frame = tk.Frame(self.window)
@@ -193,6 +257,8 @@ class App(ExamController):
         email = self.emailEntry.get()
         if (self.check_if_in_database(name, email) == True):
             # Destroy current frame
+            self.currName = name
+            self.currEmail = email
             self.main_frame.destroy()
 
             # Create new frame for the next page
@@ -203,7 +269,7 @@ class App(ExamController):
     def __init__(self):
         self.window = tk.Tk()
         self.window.title("Training Software")
-        self.window.geometry("640x480")
+        self.window.geometry("800x600")
 
         self.main_frame = tk.Frame(self.window)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
@@ -233,10 +299,18 @@ class App(ExamController):
         print("App Closed")
 
 def main():
+    testuser = User("test", 'test')
     user1 = User('Gavin', 'gavin@example.com')
     user2 = User('Thomas', 'thomas@example.com')
+    user3 = User('Alexander', 'alexander@example.com')
+    user4 = User('Gabriel', 'gabriel@example.com')
+    user5 = User('Zach', 'zach@example.com')
+    testuser.save_to_database()
     user1.save_to_database()
     user2.save_to_database()
+    user3.save_to_database()
+    user4.save_to_database()
+    user5.save_to_database()
     app = App()
 
 if __name__ == "__main__":
