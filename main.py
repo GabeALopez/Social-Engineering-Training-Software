@@ -235,10 +235,11 @@ Security Team
         self.main_frame.pack(fill=tk.BOTH, expand=True)
 
         info_text = """Instructions:
-        You will be tasked to find red flags in the following examples of phishing emails.
-        Please find as many red flags as you can. 
-        If you do not find enough red flags you will have to view a small training course.
-        Good luck."""
+       Welcome to the Social Engineering Challenge! 
+       In this game, you will test your ability to identify and respond to various social engineering tactics 
+       commonly used by cyber attackers. 
+       Your goal is to navigate through different scenarios and make decisions 
+       that help you avoid falling victim to social engineering attacks."""
 
         # Add widgets for the next page
         info_page_label = tk.Label(master=self.main_frame, text="Info page", font="Arial 24")
