@@ -144,7 +144,7 @@ class App(ExamController):
         name = self.currName
         email = self.currEmail
 
-        email_t = tk.Text(master=self.main_frame, height = 15, width = 75)
+        email_t = tk.Text(master=self.main_frame, height=15, width=75)
         email_text = f"""
 To: {email}
 Subject: Urgent: Action Required - Security Alert for Your Account
@@ -172,13 +172,15 @@ Sincerely,
 SSELLCO
 Security Team
                 """
+
+        email_t.pack()
+        email_t.insert(tk.END, email_text)
+        email_t['state'] = 'disabled'
+
         question_2_label = tk.Label(master=self.main_frame, text="Analyze the Following Email", font="Arial 24")
         question_2_label.pack(padx=10, pady=10)
 
         self.question_entry = tk.StringVar()
-        
-        email_t.pack()
-        email_t.insert(tk.END, email_text)
 
         self.checkbox_varA = tk.BooleanVar(value=False)
         checkbox1 = tk.Checkbutton(master=self.main_frame, text="A. Click on the link and follow the instructions", variable=self.checkbox_varA)
