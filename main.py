@@ -1,4 +1,5 @@
 import tkinter as tk
+from typing import LiteralString
 
 database = {}
 
@@ -81,10 +82,6 @@ class questions:
 class App(ExamController):
     question_num = 1
  
-    def check_question_answers(self):
-        if self.checkbox_varD.get() == 1:
-            self.next_page_question()
-
     def question_1_page(self):
         self.main_frame = tk.Frame(self.window)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
@@ -97,31 +94,49 @@ class App(ExamController):
         instructions_label = tk.Label(master=self.main_frame, text=info_text, font="Arial 12")
         instructions_label.pack(padx=10, pady=10)
 
-        self.checkbox_varA = tk.BooleanVar(value=False)
-        checkbox1 = tk.Checkbutton(master=self.main_frame, text="A. The process of building software to connect people and communities.", variable=self.checkbox_varA)
+        radio_value = tk.StringVar(value="-1")
+        checkbox1 = tk.Radiobutton(
+            master=self.main_frame,
+            text="A. The process of building software to connect people and communities.",
+            variable=radio_value,
+            value=0
+        )
         checkbox1.pack(padx=10, pady=10)
 
-        self.checkbox_varB = tk.BooleanVar(value=False)    
-        checkbox2 = tk.Checkbutton(master=self.main_frame, text="B. The study of social hierarchies and relationships within communities.", variable=self.checkbox_varB)
+        checkbox2 = tk.Radiobutton(
+            master=self.main_frame,
+            text="B. The study of social hierarchies and relationships within communities.",
+            variable=radio_value,
+            value=1
+        )
         checkbox2.pack(padx=10, pady=10)
 
-        self.checkbox_varC = tk.BooleanVar(value=False)    
-        checkbox2 = tk.Checkbutton(master=self.main_frame, text="C. A form of digital marketing aimed at promoting social interactions online.", variable=self.checkbox_varC)
+        checkbox2 = tk.Radiobutton(
+            master=self.main_frame,
+            text="C. A form of digital marketing aimed at promoting social interactions online.",
+            variable=radio_value,
+            value=2
+        )
         checkbox2.pack(padx=10, pady=10)
 
-        self.checkbox_varD= tk.BooleanVar(value=False)    
-        checkbox2 = tk.Checkbutton(master=self.main_frame, text="D. Using human interaction to trick or coerce a person into handing over sensitive data.", variable=self.checkbox_varD)
+        checkbox2 = tk.Radiobutton(
+            master=self.main_frame,
+            text="D. Using human interaction to trick or coerce a person into handing over sensitive data.",
+            variable=radio_value,
+            value=3
+        )
         checkbox2.pack(padx=10, pady=10)
 
-        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=lambda : self.next_page_question() if (
-            not self.checkbox_varA.get() and 
-            not self.checkbox_varB.get() and
-            not self.checkbox_varC.get() and
-            self.checkbox_varD.get()
+        question_submit = tk.Button(
+            master=self.main_frame,
+            text="Enter",
+            command=lambda: self.next_page_question() if (
+                radio_value.get() == "3"
             ) 
-            else print("incorrect"))
+            else print("incorrect")
+        )
         
-        question_button_blah.pack(padx=5, pady=5)
+        question_submit.pack(padx=5, pady=5)
 
     def question_2_page(self):
         self.main_frame = tk.Frame(self.window)
@@ -158,7 +173,7 @@ Sincerely,
 SSELLCO
 Security Team
                 """
-        question_2_label = tk.Label(master=self.main_frame, text="Analize the Following Email", font="Arial 24")
+        question_2_label = tk.Label(master=self.main_frame, text="Analyze the Following Email", font="Arial 24")
         question_2_label.pack(padx=10, pady=10)
 
         self.question_entry = tk.StringVar()
