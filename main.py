@@ -140,7 +140,7 @@ class App(ExamController):
             command=lambda: self.check_answer() if (
                 radio_value.get() == "3"
             ) 
-            else print("incorrect")
+            else self.next_page_question()
         )
         
         question_submit.pack(padx=5, pady=5)
@@ -218,7 +218,7 @@ Security Team
             self.checkbox_varD.get() and
             self.checkbox_varE.get()
             ) 
-            else print("incorrect"))
+            else self.next_page_question())
         
         question_button_blah.pack(padx=5, pady=5)
 
@@ -304,7 +304,7 @@ CityBank Security Team
             self.checkbox_varD.get() and
             not self.checkbox_varE.get()
             ) 
-            else print("incorrect"))
+            else self.next_page_question())
         
         question_button_blah.pack(padx=5, pady=5)
 
@@ -313,13 +313,20 @@ CityBank Security Team
         self.main_frame = tk.Frame(self.window)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
 
-        info_text = """You have completed the Social Engineering Challenge! 
+        user = database[self.currName]
+        
+        if (user.num_of_questions_passed):
+            textLabel="Congratulations!"
+            info_text = """You have completed the Social Engineering Challenge! 
        You tested your ability to identify and respond to various social engineering tactics 
        and successfully navigated through different scenarios and make decisions 
        that help you avoid falling victim to social engineering attacks."""
+        else:
+            textLabel="Game Over!"
+            info_text = """You have failed to completed the Social Engineering Challenge..."""
 
         # Add widgets for the next page
-        info_page_label = tk.Label(master=self.main_frame, text="Congratulations!", font="Arial 24")
+        info_page_label = tk.Label(master=self.main_frame, text=textLabel, font="Arial 24")
         info_page_label.pack(padx=10, pady=10)
 
         # Add more widgets as needed for the next page
