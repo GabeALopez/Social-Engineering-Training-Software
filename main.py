@@ -315,7 +315,7 @@ CityBank Security Team
 
         user = database[self.currName]
         
-        if (user.num_of_questions_passed):
+        if (user.num_of_questions_passed == 3):
             textLabel="Congratulations!"
             info_text = """You have completed the Social Engineering Challenge! 
        You tested your ability to identify and respond to various social engineering tactics 
