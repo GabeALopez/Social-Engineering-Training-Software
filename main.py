@@ -80,6 +80,12 @@ class questions:
 
 class App(ExamController):
     question_num = 1
+
+    def check_answer(self):
+        user = database[self.currName]
+        user.num_of_questions_passed += 1
+        print(user.num_of_questions_passed)
+        self.next_page_question()
  
     def question_1_page(self):
         self.main_frame = tk.Frame(self.window)
@@ -126,10 +132,12 @@ class App(ExamController):
         )
         checkbox2.pack(padx=10, pady=10)
 
+        
+
         question_submit = tk.Button(
             master=self.main_frame,
             text="Enter",
-            command=lambda: self.next_page_question() if (
+            command=lambda: self.check_answer() if (
                 radio_value.get() == "3"
             ) 
             else print("incorrect")
@@ -203,7 +211,7 @@ Security Team
         checkbox5 = tk.Checkbutton(master=self.main_frame, text="E. Check for grammar and spelling mistakes", variable=self.checkbox_varE)
         checkbox5.pack(padx=(100, 5), pady=5, anchor="w")
 
-        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=lambda : self.next_page_question() if (
+        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=lambda : self.check_answer() if (
             not self.checkbox_varA.get() and 
             self.checkbox_varB.get() and
             not self.checkbox_varC.get() and
@@ -289,7 +297,7 @@ CityBank Security Team
         checkbox5 = tk.Checkbutton(master=self.main_frame, text="E. Dismiss the email as a mistake", variable=self.checkbox_varE)
         checkbox5.pack(padx=(100, 5), pady=5, anchor="w")
 
-        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=lambda : self.next_page_question() if (
+        question_button_blah = tk.Button(master=self.main_frame, text="Enter", command=lambda : self.check_answer() if (
             self.checkbox_varA.get() and 
             not self.checkbox_varB.get() and
             not self.checkbox_varC.get() and
