@@ -12,6 +12,7 @@ Python Module: Tkinter
 
 ## Contributors
 
+- [Gabriel Lopez](https://github.com/GabeALopez)
 - [Thomas Spangler](https://github.com/Tspangler1234)
 - [Alexander Go](https://github.com/Ago0495)
 - [Gavin Binder](https://github.com/GavinEBinder)
