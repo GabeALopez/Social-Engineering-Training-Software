@@ -1,20 +1,20 @@
 # Social Engineering Training Software
 
-Short description of your college coding project.
+The project was a proof of concept to better understand the software development life cycle through documentation. 
 
 ## About
 
-Brief overview of the project, its purpose, and what it aims to achieve.
+The main aim of the project was to understand the moving parts that go into developing and documenting software.
 
 ## Features
 
 List of key features implemented in the project.
+Python Module: Tkinter
 
 ## Contributors
 
-A big thank you to the following individuals who have contributed to this project:
-
-- [Contributor 1](link-to-profile)
-- [Contributor 2](link-to-profile)
-- [Contributor N](link-to-profile)
+- [Thomas Spangler](https://github.com/Tspangler1234)
+- [Alexander Go](https://github.com/Ago0495)
+- [Gavin Binder](https://github.com/GavinEBinder)
+- [Zach Markham](https://github.com/mineinmonkey)
 
