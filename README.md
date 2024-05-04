@@ -8,7 +8,6 @@ The main aim of the project was to understand the moving parts that go into deve
 
 ## Features
 
-List of key features implemented in the project.
 Python Module: Tkinter
 
 ## Contributors
