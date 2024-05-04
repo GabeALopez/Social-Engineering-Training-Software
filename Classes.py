@@ -1,3 +1,4 @@
+# Define an empty dictionary to store user data
 database = {}
 
 class User:
@@ -8,10 +9,12 @@ class User:
         self._num_of_questions_passed = 0
     
     def save_to_database(self):
+        """Save user data to the database."""
         global database
         database[self._name] = self
 
     def check_if_in_database(self, name, email):
+        """Check if a user with a given name and email exists in the database."""
         global database
         for user in database.values():
             if user._name == name and user._email == email:
@@ -51,19 +54,23 @@ class User:
         self._num_of_questions_passed = value
 
 class ExamController(User):
+    @staticmethod
     def send_user_data(name, email, pass_training, num_of_questions_passed):
-        #Send user data to database here
+        """Send user data to the database."""
+        # Change the implementation to send user data to the database
         print(name, email, pass_training, num_of_questions_passed)
-        #{name: [email, pass_training, num_of_questions_passed]}
+        # Format: {name: [email, pass_training, num_of_questions_passed]}
 
+    @staticmethod
     def calculate_pass(num_of_questions_passed):
-        #Change this number based on the number questions that need to be passed
+        """Check if a user passes the exam based on the number of questions passed."""
+        # Change this number based on the total number of questions that need to be passed
         all_questions = 3
 
         if all_questions == num_of_questions_passed:
             return True
 
-class questions:
+class Questions:
     def __init__(self, num_of_questions: int, all_questions: str):
         self._num_of_questions = num_of_questions
         self._all_questions = all_questions
@@ -74,4 +81,4 @@ class questions:
     
     @property
     def all_questions(self):
-        self._all_questions
+        return self._all_questions
